@@ -26,6 +26,7 @@ pipeline {
                     sh 'mvn clean'
                     sh 'mvn package'
                 }
+                sh 'cp puzzle15/target/Puzzle15-1.0-SNAPSHOT.war tomcat-puzzle15/puzzle15.war'
             }
         }
         stage('Build and Push docker image') {

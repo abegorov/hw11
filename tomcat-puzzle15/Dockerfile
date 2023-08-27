@@ -12,4 +12,4 @@ RUN --mount=type=cache,target=/var/cache/apk,sharing=locked \
 EXPOSE 8080
 WORKDIR /opt/tomcat
 CMD [ "/opt/tomcat/bin/catalina.sh", "run" ]
-COPY --link ../puzzle15/target/Puzzle15-1.0-SNAPSHOT.war /opt/tomcat/webapps/puzzle15.war
+COPY --link puzzle15.war /opt/tomcat/webapps/
