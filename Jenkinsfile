@@ -38,9 +38,11 @@ pipeline {
             }
             steps {
                 dir('tomcat-puzzle15') {
-                    def image = docker.build("abegorov/tomcat-puzzle15:$VERSION")
-                    docker.withRegistry('', 'dockerhub_credentials') {
-                        image.push()
+                    script {
+                        def image = docker.build("abegorov/tomcat-puzzle15:$VERSION")
+                        docker.withRegistry('', 'dockerhub_credentials') {
+                            image.push()
+                        }
                     }
                 }
             }
