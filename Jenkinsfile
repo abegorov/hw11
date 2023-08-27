@@ -5,7 +5,7 @@ pipeline {
         }
     }
     parameters {
-        string(name: 'VERSION', defaultValue: '1.0.2', description: 'Docker image version')
+        string(name: 'VERSION', defaultValue: '1.0.5', description: 'Docker image version')
     }
     stages {
         stage('Build war') {
