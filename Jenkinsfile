@@ -66,7 +66,7 @@ pipeline {
                         }
                         input {
                             message "Confirm deploy"
-                            ok "${SERVER}"
+                            ok "Go"
                         }
                         steps {
                             sh "docker rm --force puzzle15 || true"
