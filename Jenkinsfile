@@ -5,7 +5,7 @@ pipeline {
         }
     }
     parameters {
-        string(name: 'VERSION', defaultValue: '1.0.0', description: 'Docker image version')
+        string(name: 'VERSION', defaultValue: '1.0.2', description: 'Docker image version')
     }
     stages {
         stage('Build war') {
@@ -49,7 +49,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
+        stage('Deploy Matrix') {
             matrix {
                 axes {
                     axis {
@@ -58,14 +58,29 @@ pipeline {
                     }
                 }
                 stages {
-                    stage('Deploy on ${SERVER}') {
+                    stage('Deploy') {
                         agent {
                             node {
                                 label "${SERVER}"
                             }
                         }
+                        input {
+                            message "Confirm deploy on ${SERVER}"
+                            ok "Go!"
+                        }
                         steps {
-                            sh "echo dummy ${SERVER}"
+                            sh "docker rm --force abegorov/tomcat-puzzle15:$VERSION || true"
+                            script {
+                                docker.withRegistry('', 'dockerhub_credentials') {
+                                    def image = docker.image("abegorov/tomcat-puzzle15:$VERSION")
+                                    image.run(
+                                        ' --name puzzle15' +
+                                        ' --restart=unless-stopped' +
+                                        ' --detach' +
+                                        ' --publish 80:8080 '
+                                    )
+                                }
+                            }
                         }
                     }
                 }
