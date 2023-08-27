@@ -12,6 +12,7 @@ pipeline {
             agent {
                 docker {
                     image 'maven:3-eclipse-temurin-17-alpine'
+                    args '-v maven-repo:/root/.m2'
                     reuseNode true
                 }
             }
