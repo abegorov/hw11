@@ -54,7 +54,7 @@ pipeline {
                 axes {
                     axis {
                         name 'SERVER'
-                        values 'yandex3'
+                        values 'yandex2', 'yandex3'
                     }
                 }
                 stages {
