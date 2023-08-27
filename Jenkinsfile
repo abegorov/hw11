@@ -61,7 +61,7 @@ pipeline {
                     }
                 }
                 stages {
-                    stage("Deploy on ${SERVER}") {
+                    stage('Deploy on ${SERVER}') {
                         agent {
                             node {
                                 label "${SERVER}"
