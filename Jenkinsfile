@@ -31,7 +31,7 @@ pipeline {
         stage('Build and Push docker image') {
             agent {
                 docker {
-                    image 'alpine:latest'
+                    image 'docker:cli'
                     args '-v /var/run/docker.sock:/var/run/docker.sock'
                     reuseNode true
                 }
