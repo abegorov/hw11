@@ -60,19 +60,18 @@ pipeline {
                         values 'yandex3'
                     }
                 }
-            }
-            stages {
-                stage('Deploy on ${SERVER}') {
-                    agent {
-                        node {
-                            label '${SERVER}'
+                stages {
+                    stage('Deploy on ${SERVER}') {
+                        agent {
+                            node {
+                                label '${SERVER}'
+                            }
+                        }
+                        steps {
+                            sh 'echo dummy ${SERVER}'
                         }
                     }
-                    steps {
-                        sh 'echo dummy ${SERVER}'
-                    }
                 }
-
             }
         }
     }
