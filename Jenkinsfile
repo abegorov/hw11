@@ -54,10 +54,11 @@ pipeline {
         }
         stage('Deploy') {
             matrix {
-            axes {
-                axis {
-                    name 'SERVER'
-                    values 'yandex3'
+                axes {
+                    axis {
+                        name 'SERVER'
+                        values 'yandex3'
+                    }
                 }
             }
             stages {
