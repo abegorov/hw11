@@ -28,7 +28,7 @@ pipeline {
                 }
             }
         }
-        stage('Build docker image') {
+        stage('Build and push docker image') {
             agent {
                 docker {
                     image 'docker:cli'
@@ -52,14 +52,26 @@ pipeline {
                 sh 'echo dummy'
             }
         }
-        stage('Deploy on yandex3') {
-            agent {
-                node {
-                    label 'yandex3'
+        stage('Deploy') {
+            matrix {
+            axes {
+                axis {
+                    name 'SERVER'
+                    values 'yandex3'
                 }
             }
-            steps {
-                sh 'echo dummy'
+            stages {
+                stage('Deploy on ${SERVER}') {
+                    agent {
+                        node {
+                            label '${SERVER}'
+                        }
+                    }
+                    steps {
+                        sh 'echo dummy ${SERVER}'
+                    }
+                }
+
             }
         }
     }
