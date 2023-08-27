@@ -1,4 +1,3 @@
-def SERVER
 pipeline {
     agent {
         node {
@@ -66,7 +65,7 @@ pipeline {
                             }
                         }
                         input {
-                            message "Confirm deploy on ${SERVER}"
+                            message "Confirm deploy"
                             ok "Go!"
                         }
                         steps {
