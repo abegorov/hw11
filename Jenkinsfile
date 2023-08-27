@@ -28,28 +28,21 @@ pipeline {
                 }
             }
         }
-        stage('Build and push docker image') {
+        stage('Build and Push docker image') {
             agent {
                 docker {
-                    image 'docker:cli'
+                    image 'alpine:latest'
                     args '-v /var/run/docker.sock:/var/run/docker.sock'
                     reuseNode true
                 }
             }
             steps {
-                sh 'echo dummy'
-            }
-        }
-        stage('Push docker image') {
-            agent {
-                docker {
-                    image 'docker:cli'
-                    args '-v /var/run/docker.sock:/var/run/docker.sock'
-                    reuseNode true
+                dir('tomcat-puzzle15') {
+                    def image = docker.build("abegorov/tomcat-puzzle15:$VERSION")
+                    docker.withRegistry('', 'dockerhub_credentials') {
+                        image.push()
+                    }
                 }
-            }
-            steps {
-                sh 'echo dummy'
             }
         }
         stage('Deploy') {
