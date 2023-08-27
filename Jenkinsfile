@@ -36,7 +36,7 @@ pipeline {
                 }
             }
             steps {
-
+                sh 'echo dummy'
             }
         }
         stage('Push docker image') {
@@ -48,7 +48,7 @@ pipeline {
                 }
             }
             steps {
-
+                sh 'echo dummy'
             }
         }
         stage('Deploy on yandex3') {
@@ -58,7 +58,7 @@ pipeline {
                 }
             }
             steps {
-
+                sh 'echo dummy'
             }
         }
     }
