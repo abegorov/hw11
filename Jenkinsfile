@@ -1,3 +1,4 @@
+def SERVER
 pipeline {
     agent {
         node {
@@ -65,8 +66,8 @@ pipeline {
                             }
                         }
                         input {
-                            message "Confirm deploy"
-                            ok "Go"
+                            message "Confirm deploy on ${SERVER}"
+                            ok "Go!"
                         }
                         steps {
                             sh "docker rm --force puzzle15 || true"
