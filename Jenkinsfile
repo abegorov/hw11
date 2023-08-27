@@ -61,14 +61,14 @@ pipeline {
                     }
                 }
                 stages {
-                    stage('Deploy on ${SERVER}') {
+                    stage("Deploy on ${SERVER}") {
                         agent {
                             node {
-                                label '${SERVER}'
+                                label "${SERVER}"
                             }
                         }
                         steps {
-                            sh 'echo dummy ${SERVER}'
+                            sh "echo dummy ${SERVER}"
                         }
                     }
                 }
