@@ -22,6 +22,7 @@ pipeline {
                     dir('target_heroku') { deleteDir() }
                     sh 'find src -type f -name "*.java" -exec sed -i "s/javax\\./jakarta\\./g" {} \\;'
                     sh 'find src -type f -name "*.jsp" -exec sed -i "s@http://java.sun.com/jsp/jstl/core@jakarta.tags.core@g" {} \\;'
+                    sh 'cp ../pom.xml ./'
                     sh 'mvn clean'
                     sh 'mvn package'
                 }
