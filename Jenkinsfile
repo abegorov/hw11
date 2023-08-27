@@ -66,10 +66,10 @@ pipeline {
                         }
                         input {
                             message "Confirm deploy"
-                            ok "Go!"
+                            ok "${SERVER}"
                         }
                         steps {
-                            sh "docker rm --force abegorov/tomcat-puzzle15:$VERSION || true"
+                            sh "docker rm --force puzzle15 || true"
                             script {
                                 docker.withRegistry('', 'dockerhub_credentials') {
                                     def image = docker.image("abegorov/tomcat-puzzle15:$VERSION")
